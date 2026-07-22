@@ -1,0 +1,25 @@
+# environment
+.env
+
+# python cache
+__pycache__/
+*.pyc
+
+# virtual environment
+.venv/
+venv/
+
+# logs
+log/
+
+# private files
+log/**/priv*
+run/**/priv*
+sut/**/priv*
+
+# mac
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

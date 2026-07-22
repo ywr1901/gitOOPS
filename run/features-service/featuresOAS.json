@@ -1,0 +1,617 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Features Service REST API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/"
+    }
+  ],
+  "paths": {
+    "/products/{productName}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        }
+      ],
+      "delete": {
+        "operationId": "deleteProductByName",
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductByName",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "addProduct",
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations/{configurationName}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        },
+        {
+          "$ref": "#/components/parameters/configurationName"
+        }
+      ],
+      "delete": {
+        "operationId": "deleteConfiguration",
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getConfigurationWithNameForProduct",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductConfiguration"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "addConfiguration",
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}/configurations/{configurationName}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations/{configurationName}/features/{featureName}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        },
+        {
+          "$ref": "#/components/parameters/configurationName"
+        },
+        {
+          "$ref": "#/components/parameters/featureName"
+        }
+      ],
+      "delete": {
+        "operationId": "deleteFeature",
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "operationId": "addFeatureToConfiguration",
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}/configurations/{configurationName}/features/{featureName}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/{constraintId}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        },
+        {
+          "$ref": "#/components/parameters/constraintId"
+        }
+      ],
+      "delete": {
+        "operationId": "deleteConstraint",
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/products/{productName}/features/{featureName}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        },
+        {
+          "$ref": "#/components/parameters/featureName"
+        }
+      ],
+      "delete": {
+        "operationId": "deleteFeatureOfProduct",
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "operationId": "addFeatureToProduct",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FeatureDescriptionForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}/features/{featureName}"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateFeatureOfProduct",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FeatureDescriptionForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feature"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "getAllProducts",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        }
+      ],
+      "get": {
+        "operationId": "getConfigurationsForProduct",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/configurations/{configurationName}/features": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        },
+        {
+          "$ref": "#/components/parameters/configurationName"
+        }
+      ],
+      "get": {
+        "operationId": "getConfigurationActivedFeatures",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/features": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        }
+      ],
+      "get": {
+        "operationId": "getFeaturesForProduct",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "$ref": "#/components/schemas/Feature"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/excludes": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        }
+      ],
+      "post": {
+        "operationId": "addExcludesConstraintToProduct",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ExcludesConstraintForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}/constraint/{constraintId}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}/constraints/requires": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/productName"
+        }
+      ],
+      "post": {
+        "operationId": "addRequiresConstraintToProduct",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RequiresConstraintForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "example": "/products/{productName}/constraints/{constraintId}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "productName": {
+        "name": "productName",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "configurationName": {
+        "name": "configurationName",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "featureName": {
+        "name": "featureName",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "constraintId": {
+        "name": "constraintId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "features": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/components/schemas/Feature"
+            }
+          },
+          "constraints": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/components/schemas/FeatureConstraint"
+            }
+          }
+        }
+      },
+      "Feature": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ProductConfiguration": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "valid": {
+            "type": "boolean",
+            "default": true
+          },
+          "activedFeatures": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/components/schemas/Feature"
+            }
+          }
+        }
+      },
+      "FeatureConstraint": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ConstraintRequires"
+          },
+          {
+            "$ref": "#/components/schemas/ConstraintExcludes"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "requires": "#/components/schemas/ConstraintRequires",
+            "excludes": "#/components/schemas/ConstraintExcludes"
+          }
+        }
+      },
+      "FeatureConstraintBase": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "ConstraintRequires": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FeatureConstraintBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "requires"
+                ]
+              },
+              "sourceFeatureName": {
+                "type": "string"
+              },
+              "requiredFeatureName": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "ConstraintExcludes": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FeatureConstraintBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "excludes"
+                ]
+              },
+              "sourceFeatureName": {
+                "type": "string"
+              },
+              "excludedFeatureName": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "FeatureDescriptionForm": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "RequiresConstraintForm": {
+        "type": "object",
+        "properties": {
+          "sourceFeature": {
+            "type": "string"
+          },
+          "requiredFeature": {
+            "type": "string"
+          }
+        }
+      },
+      "ExcludesConstraintForm": {
+        "type": "object",
+        "properties": {
+          "sourceFeature": {
+            "type": "string"
+          },
+          "excludedFeature": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

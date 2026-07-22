@@ -1,0 +1,303 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "features-service API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/products/{productName}/configurations/{configurationName}/features/{featureName}": {
+      "post": {
+        "operationId": "productsProductnameConfigurationsConfigurationnameFeaturesFeaturenamePost",
+        "parameters": [
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "productName",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "configurationName",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "featureName",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feature successfully added to the configuration",
+            "headers": {
+              "Location": {
+                "description": "URI of the newly created feature in the configuration",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+                }
+              }
+            },
+            "content": {}
+          },
+          "500": {
+            "description": "The feature could not be added because the resulting product configuration is invalid",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "operationId": "productsProductnameConfigurationsConfigurationnameFeaturesFeaturenameDelete",
+        "parameters": [
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "productName",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "configurationName",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "featureName",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Feature successfully removed from the configuration. No content returned.",
+            "content": {}
+          },
+          "500": {
+            "description": "The removal of the feature results in an invalid product configuration. The configuration constraints were violated.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/cf649fdc40d2e03ceda476c8a1be5ed2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "productsGet",
+        "responses": {
+          "200": {
+            "description": "List of all product names",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/cde862bf574644c82fd2d68e957ec955"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productName}": {
+      "get": {
+        "operationId": "productsProductnameGet",
+        "parameters": [
+          {
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "productName",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found and returned successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/53ad5b9f776c2a8ed15e771f1a1509cd"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "operationId": "productsProductnamePost",
+        "parameters": [
+          {
+            "description": "The name of the product to create",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "productName",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "operationId": "productsProductnameDelete",
+        "parameters": [
+          {
+            "description": "The name of the product to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "$ref": "#/components/schemas/801051deb0ab9f05cdcc2330d9ff7c98"
+            },
+            "name": "productName",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The product has been successfully deleted. No content is returned.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "801051deb0ab9f05cdcc2330d9ff7c98": {
+        "type": "string"
+      },
+      "cf649fdc40d2e03ceda476c8a1be5ed2": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message describing the configuration violation"
+          }
+        },
+        "type": "object"
+      },
+      "cde862bf574644c82fd2d68e957ec955": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "53ad5b9f776c2a8ed15e771f1a1509cd": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "features": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "constraints": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "excludes",
+                    "requires"
+                  ]
+                },
+                "sourceFeatureName": {
+                  "type": "string"
+                },
+                "excludedFeatureName": {
+                  "type": "string"
+                },
+                "requiredFeatureName": {
+                  "type": "string"
+                },
+                "forProduct": {
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}
