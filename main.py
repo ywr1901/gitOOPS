@@ -15,8 +15,8 @@ PROJECT_PATH = "/Users/ywr/OOPS-master/sut/gramps-web-api-master"
 PROJECT_NAME = Path(PROJECT_PATH).name
 
 # 改成你的大模型平台支持的模型名
-MODEL_WORKER = "deepseek-v4-pro"
-MODEL_PARSER = "deepseek-v4-pro"
+MODEL_WORKER = "deepseek-v4-flash"
+MODEL_PARSER = "deepseek-v4-flash"
 # MODEL_WORKER = "qwen-plus"
 # MODEL_PARSER = "qwen-plus"
 
